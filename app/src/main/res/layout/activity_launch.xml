@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/backgroundkmer"
+    tools:context=".LaunchActivity">
+
+    <ImageView
+        android:id="@+id/splash"
+        android:layout_marginTop="100dp"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:src="@drawable/logo"
+        tools:ignore="ContentDescription" />
+
+    <RelativeLayout
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/slogan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/brandon_medium"
+            android:text="Delices for all"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/togettech"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20sp"
+            android:layout_below="@+id/slogan"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/brandon_medium"
+            android:text="Powered by TogetTech, Inc"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+
+</LinearLayout>

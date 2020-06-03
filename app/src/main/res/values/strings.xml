@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">kmerdelices</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Accueil</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_food_list">Liste des menus</string>
+
+
+    <string name="popular_categories">Catégories populaire</string>
+    <string name="best_deals">Meilleures affaire</string>
+    <string name="menu_menu">Catégories</string>
+    <string name="menu_food_detail">"Details "</string>
+    <string name="a_propos">A propos</string>
+    <string name="aide">Aide</string>
+    <string name="k_merd_lices">K\'merDélices</string>
+    <string name="licence">Licence</string>
+    <string name="application">Application</string>
+    <string name="version">V2.0.2 (Toget)</string>
+    <string name="food_name">Food Name</string>
+    <string name="description">Description</string>
+
+</resources>

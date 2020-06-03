@@ -1,0 +1,18 @@
+package com.togettech.kmerdelices.Common;
+
+import com.togettech.kmerdelices.Model.CategoryModel;
+import com.togettech.kmerdelices.Model.FoodModel;
+import com.togettech.kmerdelices.Model.UserModel;
+
+public class Common {
+    public static final String USER_REFERENCESER = "Users";
+    public static final String POPULAR_CATEGORY_REF = "MostPopular";
+    public static final String BEST_DEALS_REF = "BestDeals";
+    public static final int DEFAULT_COLUMN_COUNT = 0;
+    public static final int FULL_WIDTH_COLUMN = 1;
+    public static final String CATEGORY_REF = "Category";
+    public static final String COMMENT_REF = "Commentaires";
+    public static UserModel currentUser;
+    public static CategoryModel categorySelected;
+    public static FoodModel selectedFood;
+}

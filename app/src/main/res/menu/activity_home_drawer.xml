@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_home"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_menu"
+            android:icon="@drawable/ic_menu_category"
+            android:title="@string/menu_menu" />
+        <item
+            android:id="@+id/nav_food_list"
+            android:icon="@drawable/ic_menu_list"
+            android:title="@string/menu_food_list" />
+    </group>
+
+    <item android:title="@string/a_propos">
+        <menu>
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_menu_help"
+                android:title="@string/aide" />
+            <item
+                android:id="@+id/nav_aide"
+                android:icon="@drawable/logo"
+                android:title="@string/k_merd_lices" />
+        </menu>
+    </item>
+    <item android:title="@string/application">
+        <menu>
+            <item
+                android:id="@+id/nav_licence"
+                android:title="@string/licence" />
+            <item
+                android:id="@+id/nav_version"
+                android:title="@string/version" />
+        </menu>
+    </item>
+</menu>
