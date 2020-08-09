@@ -26,4 +26,20 @@
     <string name="food_name">Food Name</string>
     <string name="description">Description</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="inscrivez_vous">Inscrivez - vous</string>
+    <string name="size">Size</string>
+    <string name="add_on">Addon</string>
+
+    <string name="web_client_id">298634280514-v5heqt699hanrdb4kkhl3sgpu92q5ocr.apps.googleusercontent.com</string>
+    <string name="menu_cart">Panier</string>
+    <string name="menu_restaurant">Restaurants</string>
+    <string name="menu_boulangerie">Boulangeries</string>
+    <string name="menu_restaurant_detail">Detail restaurant</string>
+    <string name="menu_boulangerie_detail">Detail boulangerie</string>
+    <string name="restaurant_menu">Menus disponibles</string>
+    <string name="menu_restaurant_list">Liste restaurants</string>
+    <string name="menu_boulangerie_list">Liste boulangeries</string>
+
 </resources>

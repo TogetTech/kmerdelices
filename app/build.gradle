@@ -9,8 +9,8 @@ android {
         applicationId "com.togettech.kmerdelices"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 5
-        versionName "2"
+        versionCode 6
+        versionName "Hot"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -74,6 +74,11 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'com.github.andremion:counterfab:1.2.0'
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
-    
+
+    //
+    implementation 'androidx.room:room-rxjava2:2.3.0-alpha02'
+    annotationProcessor 'androidx.room:room-compiler:2.3.0-alpha01'
+    //
+
 
 }

@@ -22,15 +22,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.togettech.kmerdelices.Adapter.MyCategoriesAdapter;
 import com.togettech.kmerdelices.Common.Common;
 import com.togettech.kmerdelices.Common.SpacesItemDecoration;
+import com.togettech.kmerdelices.MainActivity;
 import com.togettech.kmerdelices.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import dmax.dialog.SpotsDialog;
 
 public class MenuFragment extends Fragment {
 
     private MenuViewModel menuViewModel;
+    private android.app.AlertDialog waitingDialog;
 
     Unbinder unbinder;
     @BindView(R.id.recycler_menu)
@@ -48,14 +51,16 @@ public class MenuFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_menu, container, false);
 
 
+        waitingDialog = new SpotsDialog.Builder().setCancelable(false).setContext(getActivity()).build();
+
         unbinder = ButterKnife.bind(this, root);
         initViews();
         menuViewModel.getMessageError().observe(this, s -> {
             Toast.makeText(getContext(), ""+s, Toast.LENGTH_SHORT).show();
-            //dialog.dismiss();
+            waitingDialog.dismiss();
         });
         menuViewModel.getCategoryListMultable().observe(this, categoryModelList -> {
-            //dialog.dismiss();
+            waitingDialog.dismiss();
             adapter = new MyCategoriesAdapter(getContext(), categoryModelList);
             recycler_menu.setAdapter(adapter);
             recycler_menu.setLayoutAnimation(layoutAnimationController);
@@ -64,6 +69,8 @@ public class MenuFragment extends Fragment {
     }
 
     private void initViews() {
+        //dialog = new SpotsDialog.Builder().setContext(getContext()).setCancelable(false).build();
+        //dialog.show();
 
         layoutAnimationController = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_item_from_left);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);

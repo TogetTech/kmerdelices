@@ -70,6 +70,7 @@
                 <ImageView
                     android:id="@+id/img_fav"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     android:tint="@android:color/white"
                     android:src="@drawable/ic_favorite_border_back"
                     android:layout_width="0dp"
@@ -78,6 +79,7 @@
 
                 <ImageView
                     android:id="@+id/img_quick_cart"
+                    android:visibility="gone"
                     android:layout_weight="1"
                     android:tint="@android:color/white"
                     android:src="@drawable/ic_shopping_cart_black"

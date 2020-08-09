@@ -28,7 +28,6 @@ public class MenuViewModel extends ViewModel implements ICategoryCallbackListene
         categoryCallbackListener = this;
 
     }
-
     public MutableLiveData<List<CategoryModel>> getCategoryListMultable() {
         if (categoryListMultable == null){
             categoryListMultable = new MutableLiveData<>();

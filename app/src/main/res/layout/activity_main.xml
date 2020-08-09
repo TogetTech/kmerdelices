@@ -1,13 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:background="#f5f5f5"
-    tools:context=".MainActivity">
+    android:background="#fff">
 
 
-</LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txt1"
+            android:text="@string/inscrivez_vous"
+            android:layout_marginLeft="15dp"
+            android:textSize="22sp"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/roboto_thin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp" />
+
+        <TextView
+            android:id="@+id/txt2"
+            android:layout_below="@id/txt1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/roboto_thin"
+            android:text="Connectez - vous ou inscrivez pour recevoir les informations sur les derniers recettes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText,ObsoleteLayoutParam" />
+
+        <Button
+            android:id="@+id/btn_register"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:layout_margin="15dp"
+            android:text="Creer un compte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt3"
+                android:text="Vous avez un compte ?"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_thin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/txt4"
+                android:text="Connexion"
+                android:layout_marginLeft="15dp"
+                android:textSize="18sp"
+                android:fontFamily="@font/roboto_thin"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/sign_in_button"
+                android:layout_width="150dp"
+                android:background="#E8E8E8"
+                android:padding="5dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/go"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/go"
+                    android:layout_marginStart="10dp"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@+id/go"
+                    android:layout_toRightOf="@+id/go"
+                    android:fontFamily="@font/roboto_thin"
+                    android:text="Google"
+                    android:textSize="16sp"
+                    android:layout_marginStart="10dp"
+                    tools:ignore="HardcodedText" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="150dp"
+                android:background="#E8E8E8"
+                android:padding="5dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/fb"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/fb"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@+id/fb"
+                    android:layout_toRightOf="@+id/fb"
+                    android:fontFamily="@font/roboto_thin"
+                    android:text="Facebook"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText,RtlHardcoded" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt"
+            android:gravity="center"
+            android:padding="15dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/roboto_thin"
+            android:text="Nous ne traitons vos informations personnelles que conformement a notre  Politique de confidentialite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+
+</RelativeLayout>

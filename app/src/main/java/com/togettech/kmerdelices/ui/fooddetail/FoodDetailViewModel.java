@@ -26,6 +26,7 @@ public class FoodDetailViewModel extends ViewModel {
         modelMutableDataComment = new MutableLiveData<>();
     }
 
+
     public MutableLiveData<FoodModel> getMutableLiveDataFood() {
         if (mutableLiveDataFood == null)
             mutableLiveDataFood = new MutableLiveData<>();

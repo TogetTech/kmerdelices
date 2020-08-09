@@ -49,7 +49,6 @@ public class HomeFragment extends Fragment {
     LayoutAnimationController layoutAnimationController;
 
 
-
     @SuppressLint("FragmentLiveDataObserve")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

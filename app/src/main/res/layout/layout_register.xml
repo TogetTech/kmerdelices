@@ -15,6 +15,7 @@
             android:id="@+id/edit_name"
             android:hint="Nom d'utilisateur"
             android:layout_width="match_parent"
+            android:inputType="text"
             android:layout_height="wrap_content"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -26,6 +27,7 @@
         <EditText
             android:id="@+id/edit_address"
             android:hint="Email"
+            android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -38,6 +40,20 @@
         <EditText
             android:id="@+id/edit_phone"
             android:focusable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edit_password"
+            android:hint="Mot de passe"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

@@ -3,7 +3,7 @@
     <color name="colorPrimary">#EC5A2D</color>
     <color name="colorPrimaryDark">#BB4927</color>
     <color name="colorAccent">#EC5A2D</color>
-    <color name="overlay_color">#55333639</color>
+    <color name="overlay_color">#48F4F4F4</color>
     <color name="greenC">#01D277</color>
     <color name="purpleC">#0066FF</color>
     <color name="link">#0066FF</color>

@@ -12,10 +12,15 @@
             android:id="@+id/nav_menu"
             android:icon="@drawable/ic_menu_category"
             android:title="@string/menu_menu" />
+       <item
+            android:id="@+id/nav_restaurant"
+            android:icon="@drawable/ic_menu_restaurant"
+            android:title="@string/menu_restaurant" />
+
         <item
-            android:id="@+id/nav_food_list"
-            android:icon="@drawable/ic_menu_list"
-            android:title="@string/menu_food_list" />
+            android:id="@+id/nav_boulangerie"
+            android:icon="@drawable/ic_menu_boulangerie"
+            android:title="@string/menu_boulangerie" />
     </group>
 
     <item android:title="@string/a_propos">

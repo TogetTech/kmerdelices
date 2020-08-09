@@ -23,6 +23,7 @@ public class HomeViewModel extends ViewModel implements IPopularCallbackListener
     private MutableLiveData<List<PopularCategoryModel>> popularList;
     private MutableLiveData<List<BestDealModel>> bestDealList;
     private MutableLiveData<String> messageError;
+
     private IPopularCallbackListener popularCallbackListener;
     private IBestDealCallbackListener bestDealCallbackListener;
 
@@ -69,7 +70,6 @@ public class HomeViewModel extends ViewModel implements IPopularCallbackListener
         }
         return  popularList;
     }
-
     private void loadCategoryList() {
         List<PopularCategoryModel>  tempList = new ArrayList<>();
         DatabaseReference popularRef = FirebaseDatabase.getInstance().getReference(Common.POPULAR_CATEGORY_REF);
@@ -90,22 +90,22 @@ public class HomeViewModel extends ViewModel implements IPopularCallbackListener
             }
         });
     }
-
     public MutableLiveData<String> getMessageError() {
         return messageError;
     }
-
     @Override
     public void onPopularLoadSuccess(List<PopularCategoryModel> popularCategoryModels) {
         popularList.setValue(popularCategoryModels);
 
     }
-
     @Override
     public void onPopularLLoadFailed(String message) {
         messageError.setValue(message);
 
     }
+
+
+
 
     @Override
     public void onBestDealLoadSuccess(List<BestDealModel> bestDealModels) {

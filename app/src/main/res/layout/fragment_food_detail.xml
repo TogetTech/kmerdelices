@@ -155,12 +155,90 @@
 
             </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                app:cardUseCompatPadding="true">
+
+               <LinearLayout
+                   android:visibility="gone"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical"
+                   android:padding="8dp">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/brandon_medium"
+                       android:text="@string/size"
+                       android:textSize="22sp"/>
+
+                   <RadioGroup
+                       android:id="@+id/rdi_groupe_size"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="horizontal"
+                       android:weightSum="3"/>
+
+               </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                android:visibility="gone"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <LinearLayout
+                        android:visibility="invisible"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/brandon_medium"
+                            android:text="@string/add_on"
+                            android:textSize="22sp"/>
+
+                        <ImageView
+                            android:id="@+id/img_add_addon"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="4dp"
+                            android:src="@drawable/ic_add_box_black"
+                            android:tint="@color/colorAccent"/>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chip_group_user_selected_addon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
             <Button
                 android:id="@+id/btnShowComment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="Afficher les commentaires"
+                android:visibility="visible"
+                android:text="Commander maintenant"
                 android:textColor="@android:color/white"
                 app:cornerRadius="4dp"
                 tools:ignore="HardcodedText" />
@@ -174,6 +252,7 @@
         android:src="@drawable/ic_shopping_cart_black"
         app:backgroundTint="@android:color/white"
         app:elevation="6dp"
+        android:visibility="invisible"
         app:layout_anchor="@id/app_bar_layout"
         app:layout_anchorGravity="bottom|right|end"
         app:pressedTranslationZ="12dp"
@@ -186,6 +265,7 @@
         app:backgroundTint="@android:color/white"
         android:src="@drawable/ic_star_black"
         app:elevation="6dp"
+        android:visibility="visible"
         app:layout_anchor="@id/app_bar_layout"
         app:layout_anchorGravity="bottom|right|start"
         app:pressedTranslationZ="12dp"
