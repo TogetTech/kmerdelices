@@ -63,39 +63,26 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        /*
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navController.navigate(R.id.nav_cart);
-            }
-        });
-
-
-         */
 
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_menu,
-                R.id.nav_food_detail, R.id.nav_restaurant, R.id.nav_restaurant_detail, R.id.nav_boulangerie, R.id.nav_boulangerie_detail)
+                R.id.nav_food_detail, R.id.nav_restaurant, R.id.nav_restaurant_detail,
+                R.id.nav_boulangerie, R.id.nav_boulangerie_detail, R.id.nav_account, R.id.nav_licence)
                 .setDrawerLayout(drawer)
                 .build();
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.bringToFront();//Fixe
+        navigationView.bringToFront();
 
-        //counterCartItem();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
@@ -125,13 +112,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_boulangerie:
                 navController.navigate(R.id.nav_boulangerie);
                 break;
+            case R.id.nav_account:
+                navController.navigate(R.id.nav_account);
+                break;
+            case R.id.nav_licence:
+                navController.navigate(R.id.nav_licence);
+                break;
 
         }
         return true;
     }
 
     //EventBus
-
 
     @Override
     protected void onStart() {
@@ -208,28 +200,4 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             //fab.show();
         }
     }
-/*
-    private void counterCartItem() {
-        cartDataSource.countItemInCart(currentUser.getUid())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<Integer>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(Integer integer) {
-                        fab.setCount(integer);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Toast.makeText(HomeActivity.this, "[COUNTER CART]"+e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
- */
 }

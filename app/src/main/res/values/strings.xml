@@ -32,7 +32,7 @@
     <string name="size">Size</string>
     <string name="add_on">Addon</string>
 
-    <string name="web_client_id">298634280514-v5heqt699hanrdb4kkhl3sgpu92q5ocr.apps.googleusercontent.com</string>
+    <string name="web_client_id">305501299385-hm844g0k8dvagkrostls80797o3tc4im.apps.googleusercontent.com</string>
     <string name="menu_cart">Panier</string>
     <string name="menu_restaurant">Restaurants</string>
     <string name="menu_boulangerie">Boulangeries</string>
@@ -41,5 +41,11 @@
     <string name="restaurant_menu">Menus disponibles</string>
     <string name="menu_restaurant_list">Liste restaurants</string>
     <string name="menu_boulangerie_list">Liste boulangeries</string>
+    <string name="action_apparence">Apparence</string>
+    <string name="menu_account">Mon compte</string>
+    <string name="ingredient">Ingredients</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="telephone">Téléphone</string>
 
 </resources>

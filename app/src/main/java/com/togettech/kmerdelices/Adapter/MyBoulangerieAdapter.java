@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.togettech.kmerdelices.Callback.IRecyclerClickListener;
 import com.togettech.kmerdelices.Common.Common;
+import com.togettech.kmerdelices.EventBus.BoulangerieDetailClick;
 import com.togettech.kmerdelices.EventBus.BoulangerieItemClick;
 import com.togettech.kmerdelices.EventBus.CategoryClick;
 import com.togettech.kmerdelices.Model.BoulangerieModel;
@@ -47,11 +48,12 @@ public class MyBoulangerieAdapter extends RecyclerView.Adapter<MyBoulangerieAdap
         Glide.with(context).load(boulangerieModelList.get(position).getImage())
                 .into(holder.boulangerie_image);
         holder.boulangerie_name.setText(new StringBuilder(boulangerieModelList.get(position).getName()));
+        holder.ville_boulangerie.setText(new StringBuilder(boulangerieModelList.get(position).getVille()));
 
         //Event
         holder.setListener((view, pos) -> {
             Common.boulangerieSelected = boulangerieModelList.get(pos);
-            EventBus.getDefault().postSticky(new BoulangerieItemClick(true, boulangerieModelList.get(pos)));
+            EventBus.getDefault().postSticky(new BoulangerieDetailClick(true, boulangerieModelList.get(pos)));
         });
 
     }
@@ -67,6 +69,8 @@ public class MyBoulangerieAdapter extends RecyclerView.Adapter<MyBoulangerieAdap
         ImageView boulangerie_image;
         @BindView(R.id.txt_boulangerie)
         TextView boulangerie_name;
+        @BindView(R.id.ville_boulangerie)
+        TextView ville_boulangerie;
 
         IRecyclerClickListener listener;
 

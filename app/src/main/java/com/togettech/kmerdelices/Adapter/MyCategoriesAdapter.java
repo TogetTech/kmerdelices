@@ -20,7 +20,6 @@ import com.togettech.kmerdelices.R;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,7 +61,7 @@ public class MyCategoriesAdapter extends RecyclerView.Adapter<MyCategoriesAdapte
         return categoryModelList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener     {
         Unbinder unbinder;
         @BindView(R.id.img_category)
         ImageView category_image;

@@ -21,15 +21,13 @@
         android:id="@+id/nav_restaurant"
         android:name="com.togettech.kmerdelices.ui.restaurant.RestaurantFragment"
         android:label="@string/menu_restaurant"
-        tools:layout="@layout/fragment_menu" />
+        tools:layout="@layout/fragment_restaurant" />
 
     <fragment
         android:id="@+id/nav_boulangerie"
         android:name="com.togettech.kmerdelices.ui.boulangerie.BoulangerieFragment"
         android:label="@string/menu_boulangerie"
-        tools:layout="@layout/fragment_menu" />
-
-
+        tools:layout="@layout/fragment_boulangerie" />
 
     <fragment
         android:id="@+id/nav_food_detail"
@@ -66,6 +64,19 @@
         android:name="com.togettech.kmerdelices.ui.boulangerie.detail.BoulangerieDetailFragment"
         android:label="@string/menu_boulangerie_detail"
         tools:layout="@layout/fragment_boulangerie_detail" />
+
+    <fragment
+        android:id="@+id/nav_account"
+        android:name="com.togettech.kmerdelices.ui.account.AccountFragment"
+        android:label="@string/menu_account"
+        tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/nav_licence"
+        android:name="com.togettech.kmerdelices.ui.licence.LicenceFragment"
+        android:label="@string/k_merd_lices"
+        tools:layout="@layout/fragment_licence" />
+
 
 
 

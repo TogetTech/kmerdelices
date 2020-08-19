@@ -32,6 +32,7 @@ public class Common {
 
     public static RestaurantModel restaurantSelected;
     public static BoulangerieModel boulangerieSelected;
+    public static UserModel userSelected;
 
 
     public static String formatPrice(double price){

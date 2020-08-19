@@ -57,10 +57,10 @@ public class MenuFragment extends Fragment {
         initViews();
         menuViewModel.getMessageError().observe(this, s -> {
             Toast.makeText(getContext(), ""+s, Toast.LENGTH_SHORT).show();
-            waitingDialog.dismiss();
+            dialog.dismiss();
         });
         menuViewModel.getCategoryListMultable().observe(this, categoryModelList -> {
-            waitingDialog.dismiss();
+            dialog.dismiss();
             adapter = new MyCategoriesAdapter(getContext(), categoryModelList);
             recycler_menu.setAdapter(adapter);
             recycler_menu.setLayoutAnimation(layoutAnimationController);
@@ -69,8 +69,8 @@ public class MenuFragment extends Fragment {
     }
 
     private void initViews() {
-        //dialog = new SpotsDialog.Builder().setContext(getContext()).setCancelable(false).build();
-        //dialog.show();
+        dialog = new SpotsDialog.Builder().setContext(getContext()).setCancelable(false).build();
+        dialog.show();
 
         layoutAnimationController = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_item_from_left);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);

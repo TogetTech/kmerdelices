@@ -105,14 +105,16 @@ public class FoodDetailFragment extends Fragment implements TextWatcher {
     ImageView img_food;
     /*@BindView(R.id.btnCart)
     CounterFab btnCart;
-
+    */
 
     @BindView(R.id.btn_rating)
     FloatingActionButton btn_rating;
 
-     */
+
     @BindView(R.id.food_name)
     TextView food_name;
+    @BindView(R.id.food_ingredient)
+    TextView food_ingredient;
     @BindView(R.id.food_description)
     TextView food_description;
     @BindView(R.id.food_price)
@@ -263,7 +265,7 @@ public class FoodDetailFragment extends Fragment implements TextWatcher {
 
     @OnClick(R.id.btn_rating)
     void OnRatingButtonClick(){
-        //showDialogRating();
+        showDialogRating();
 
     }
 
@@ -277,7 +279,7 @@ public class FoodDetailFragment extends Fragment implements TextWatcher {
     private void showDialogRating() {
         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getContext());
         builder.setTitle("Évaluation des plats");
-        builder.setMessage("Veuillez ajouter note");
+        //builder.setMessage("Veuillez ajouter note");
 
         View itemView = LayoutInflater.from(getContext()).inflate(R.layout.layout_rating, null);
 
@@ -442,6 +444,7 @@ public class FoodDetailFragment extends Fragment implements TextWatcher {
     private void displayInfo(FoodModel foodModel) {
         Glide.with(getContext()).load(foodModel.getImage()).into(img_food);
         food_name.setText(new StringBuilder(foodModel.getName()));
+        food_ingredient.setText(new StringBuilder(foodModel.getIngredient()));
         food_description.setText(new StringBuilder(foodModel.getDescription()));
         food_price.setText(new StringBuilder(String.valueOf(foodModel.getPrice())));
 

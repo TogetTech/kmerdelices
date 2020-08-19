@@ -1,6 +1,6 @@
 package com.togettech.kmerdelices.Model;
 
-public class AddonModel {
+public class  AddonModel {
     private String name;
     private long price;
 

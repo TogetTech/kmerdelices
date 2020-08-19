@@ -21,7 +21,7 @@
 
         <EditText
             android:id="@+id/edit_comment"
-            android:hint="Veuillez écrire quelque chose"
+            android:hint="Ajouter votre commentaire"
             android:maxLines="120"
             android:layout_width="match_parent"
             android:layout_height="100dp"/>

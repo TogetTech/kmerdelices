@@ -1,32 +1,41 @@
 package com.togettech.kmerdelices.Carousel;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.BuildConfig;
-import com.firebase.ui.auth.IdpResponse;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.togettech.kmerdelices.HomeActivity;
-import com.togettech.kmerdelices.MainActivity;
+
 import com.togettech.kmerdelices.R;
 
-import java.util.Collections;
+
 
 public class CarouselActivity extends AppCompatActivity {
 
@@ -36,11 +45,17 @@ public class CarouselActivity extends AppCompatActivity {
     private int positionLastColoredDots = 0;
 
     private TextView[] mDots;
-    Button btn_next;
 
-    private static final int RC_SIGN_IN = 101;
+
+
+    private static final String TAG = "CarouselActivity";
+
+    Button btn_next_login;
+
     private FirebaseAuth firebaseAuth;
 
+    private static final int RC_SIGN_IN_GO = 1001;
+    GoogleSignInClient googleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,19 +79,73 @@ public class CarouselActivity extends AppCompatActivity {
 
         mySlideviewpage.addOnPageChangeListener(viewListener);
 
-        btn_next = findViewById(R.id.btn_next);
-        btn_next.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-
-                //doPhoneLogin();
-                Intent intent = new Intent(CarouselActivity.this, HomeActivity.class);
-                startActivity(intent);
+        btn_next_login = findViewById(R.id.btn_next_login);
+        btn_next_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signInToGoogle();
             }
         });
+        //Configure Google Client
+        configureGoogleClient();
+
+        //Initialize Firebase Auth
+        FirebaseApp.initializeApp(getApplicationContext());
+        firebaseAuth = FirebaseAuth.getInstance();
 
     }
 
-    //SLIDER
+    //GOOGLE LOGIN .................................................................................
+    private void configureGoogleClient() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.web_client_id))
+                .requestEmail()
+                .build();
+        googleSignInClient = GoogleSignIn.getClient(this, gso);
+        firebaseAuth = FirebaseAuth.getInstance();
+    }
+    private void signInToGoogle() {
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN_GO);
+    }
+
+    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
+        //Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        firebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            //Log.d(TAG, "signInWithCredential:success: currentUser: " + user.getEmail());
+                            //showToastMessage("Firebase Authentication Succeeded ");
+                            launchMainActivity(user);
+                            updateUI();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            //Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            showToastMessage("Firebase Authentication failed:" + task.getException());
+                        }
+                    }
+                });
+    }
+
+    private void showToastMessage(String message) {
+        Toast.makeText(CarouselActivity.this, message, Toast.LENGTH_LONG).show();
+    }
+    private void launchMainActivity(FirebaseUser user) {
+        if (user != null) {
+            //MainActivity.startActivity(this, user.getDisplayName());
+            finish();
+        }
+    }
+
+    //END GOOGLE LOGON..............................................................................
+
+
+    //SLIDER........................................................................................
     private void initDots() {
         mDots = new TextView[4];
         for (int i = 0; i < mDots.length; i++) {
@@ -118,78 +187,40 @@ public class CarouselActivity extends AppCompatActivity {
         }
     };
 
-    //PHONE LOGIN
+    //END SLIDER....................................................................................
 
-    private void doPhoneLogin() {
-        Intent intent = AuthUI.getInstance().createSignInIntentBuilder()
-                .setIsSmartLockEnabled(!BuildConfig.DEBUG)
-                .setAvailableProviders(Collections.singletonList(
-                        new AuthUI.IdpConfig.PhoneBuilder().build()))
-                .setLogo(R.mipmap.ic_launcher)
-                .build();
-
-        startActivityForResult(intent, RC_SIGN_IN);
-    }
-
-
-    @Override
+    //BACKGROUND RUN ...............................................................................
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SIGN_IN) {
-            IdpResponse idpResponse = IdpResponse.fromResultIntent(data);
-
-            if (resultCode == RESULT_OK) {
-                // Successfully signed in
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                assert user != null;
-                showAlertDialog(user);
-            } else {
-                Toast.makeText(getBaseContext(), "Phone Auth Failed", Toast.LENGTH_LONG).show();
+        if (requestCode == RC_SIGN_IN_GO) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                //showToastMessage("Google Sign in Succeeded");
+                firebaseAuthWithGoogle(account);
+                updateUI();
+            } catch (ApiException e) {
+                // Google Sign In failed, update UI appropriately
+                Log.w(TAG, "Google sign in failed", e);
+                showToastMessage("Google Sign in Failed " + e);
             }
         }
+
     }
-
-    public void showAlertDialog(FirebaseUser user) {
-        AlertDialog.Builder mAlertDialog = new AlertDialog.Builder(
-                CarouselActivity.this);
-
-        // Set Title
-        mAlertDialog.setTitle("Connexion réussie");
-
-        // Set Message
-        mAlertDialog.setMessage(" Le numéro de téléphone est " + user.getPhoneNumber());
-
-        mAlertDialog.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.dismiss();
-                Intent intent = new Intent(CarouselActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-        mAlertDialog.create();
-
-        // Showing Alert Message
-        mAlertDialog.show();
-    }
-
     private void updateUI() {
         //Toast.makeText(CarouselActivity.this, "Vous êtes connecté", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(CarouselActivity.this, MainActivity.class);
+        Intent intent = new Intent(CarouselActivity.this, HomeActivity.class);
         startActivity(intent);
         finish();
     }
-/*
+
     @Override
     protected void onStart() {
         super.onStart();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        //assert currentUser != null;
         if (currentUser != null) {
            updateUI();
         }
     }
-
- */
-
-
 }

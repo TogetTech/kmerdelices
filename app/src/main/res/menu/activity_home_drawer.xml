@@ -26,23 +26,18 @@
     <item android:title="@string/a_propos">
         <menu>
             <item
-                android:id="@+id/nav_help"
-                android:icon="@drawable/ic_menu_help"
-                android:title="@string/aide" />
-            <item
-                android:id="@+id/nav_aide"
-                android:icon="@drawable/logo"
-                android:title="@string/k_merd_lices" />
+                android:id="@+id/nav_account"
+                android:icon="@drawable/ic_menu_account"
+                android:title="@string/menu_account" />
+
         </menu>
     </item>
     <item android:title="@string/application">
         <menu>
             <item
                 android:id="@+id/nav_licence"
-                android:title="@string/licence" />
-            <item
-                android:id="@+id/nav_version"
-                android:title="@string/version" />
+                android:icon="@drawable/ic_licence"
+                android:title="@string/k_merd_lices" />
         </menu>
     </item>
 </menu>

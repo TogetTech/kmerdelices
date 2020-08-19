@@ -2,13 +2,14 @@ package com.togettech.kmerdelices.Model;
 
 public class UserModel {
 
-    private String uid, name, address, phone, password;
+    private String uid, image, name, address, phone, password;
 
     public UserModel() {
     }
 
-    public UserModel(String uid, String name, String address, String phone, String password) {
+    public UserModel(String uid, String image, String name, String address, String phone, String password) {
         this.uid = uid;
+        this.image = image;
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -21,6 +22,14 @@ public class UserModel {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getName() {

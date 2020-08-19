@@ -46,7 +46,19 @@
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/ville_boulangerie"
+                    android:fontFamily="@font/roboto_thin"
+                    android:textStyle="bold"
+                    android:text="Ville, Quartier"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="HardcodedText,SmallSp" />
 
             </LinearLayout>
 
@@ -65,6 +77,7 @@
                     android:tint="@android:color/white"
                     android:src="@drawable/ic_favorite_border_back"
                     android:layout_width="0dp"
+                    android:visibility="invisible"
                     android:layout_height="wrap_content"
                     tools:ignore="ContentDescription,NestedWeights" />
 
@@ -72,7 +85,7 @@
                     android:id="@+id/img_quick_cart"
                     android:layout_weight="1"
                     android:tint="@android:color/white"
-                    android:src="@drawable/ic_shopping_cart_black"
+                    android:src="@drawable/ic_map"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     tools:ignore="ContentDescription" />

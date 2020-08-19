@@ -4,7 +4,7 @@ import java.util.List;
 
 public class FoodModel {
     private String key;
-    private String name, image, id, description;
+    private String name, image, id, ingredient, description;
     private long price;
     private List<AddonModel> addon;
     private List<SizeModel> size;
@@ -41,6 +41,14 @@ public class FoodModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(String ingredient) {
+        this.ingredient = ingredient;
     }
 
     public String getDescription() {
