@@ -87,6 +87,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class FoodDetailFragment extends Fragment implements TextWatcher {
 
+    private static final String TAG = "FoodDetailFragment";
+    private FirebaseAuth firebaseAuth;
 
     private FoodDetailViewModel foodDetailViewModel;
 
@@ -103,9 +105,6 @@ public class FoodDetailFragment extends Fragment implements TextWatcher {
 
     @BindView(R.id.img_food)
     ImageView img_food;
-    /*@BindView(R.id.btnCart)
-    CounterFab btnCart;
-    */
 
     @BindView(R.id.btn_rating)
     FloatingActionButton btn_rating;
@@ -132,136 +131,6 @@ public class FoodDetailFragment extends Fragment implements TextWatcher {
     @BindView(R.id.chip_group_user_selected_addon)
     ChipGroup chip_group_user_selected_addon;
 
-    @OnClick(R.id.img_add_addon)
-    void onAddonClick(){
-        if (Common.selectedFood.getAddon() != null){
-            displayAddonList();
-            addonBottomSheetDialog.show();
-        }
-    }
-
-    @OnClick(R.id.btnCart)
-    void onCartItemAdd(){
-
-        CartItem cartItem = new CartItem();
-        cartItem.setUid(Common.currentUser.getUid());
-        cartItem.setUserPhone(Common.currentUser.getPhone());
-
-        cartItem.setFoodId(Common.selectedFood.getId());
-        cartItem.setFoodName(Common.selectedFood.getName());
-        cartItem.setFoodImage(Common.selectedFood.getImage());
-        cartItem.setFoodPrice(Double.valueOf(String.valueOf(Common.selectedFood.getPrice()) ));
-        cartItem.setFoodQuantity(Integer.valueOf(number_button.getNumber()));
-        cartItem.setFoodExtraPrice(Common.calculateExtraPrice(Common.selectedFood.getUserSelectedSize(), Common.selectedFood.getUserSelectedAddon()));
-        if (Common.selectedFood.getUserSelectedAddon() != null)
-            cartItem.setFoodAddon(new Gson().toJson(Common.selectedFood.getUserSelectedAddon()));
-        else
-            cartItem.setFoodAddon("Default");
-        if (Common.selectedFood.getUserSelectedAddon() != null)
-            cartItem.setFoodSize(new Gson().toJson(Common.selectedFood.getUserSelectedSize()));
-        else
-            cartItem.setFoodSize("Default");
-
-        cartDataSource.getItemWithAllOptionsInCart(Common.currentUser.getUid(),
-                cartItem.getFoodId(),
-                cartItem.getFoodSize(),
-                cartItem.getFoodAddon())
-                .subscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<CartItem>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(CartItem cartItemFromDB) {
-                        if (cartItemFromDB.equals(cartItem)){
-                            //Deja dans la DB, juste une mise a jour
-                            cartItemFromDB.setFoodExtraPrice(cartItem.getFoodExtraPrice());
-                            cartItemFromDB.setFoodAddon(cartItem.getFoodAddon());
-                            cartItemFromDB.setFoodSize(cartItem.getFoodSize());
-                            cartItemFromDB.setFoodQuantity(cartItemFromDB.getFoodQuantity() + cartItem.getFoodQuantity());
-
-                            cartDataSource.updateCartItems(cartItemFromDB)
-                                    .subscribeOn(Schedulers.io())
-                                    .subscribeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(new SingleObserver<Integer>() {
-                                        @Override
-                                        public void onSubscribe(Disposable d) {
-
-                                        }
-
-                                        @Override
-                                        public void onSuccess(Integer integer) {
-                                            Toast.makeText(getContext(), "Update Cart success", Toast.LENGTH_SHORT).show();
-                                            EventBus.getDefault().postSticky(new CounterCartEvent(true));
-                                        }
-
-                                        @Override
-                                        public void onError(Throwable e) {
-                                            Toast.makeText(getContext(), "[UPDATE CART]"+e.getMessage(), Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                        } else {
-                            compositeDisposable.add(cartDataSource.insertOrReplaceAll(cartItem)
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(()-> {
-                                        Toast.makeText(getContext(), "Add to Cart success", Toast.LENGTH_SHORT).show();
-                                        EventBus.getDefault().postSticky(new CounterCartEvent(true));
-                                    }, throwable -> {
-                                        Toast.makeText(getContext(), "[CART ERROR]"+throwable.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }));
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        if (e.getMessage().contains("empty")){
-                            //Par defaut si le panier est vide
-                            compositeDisposable.add(cartDataSource.insertOrReplaceAll(cartItem)
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(()-> {
-                                        Toast.makeText(getContext(), "Add to Cart success", Toast.LENGTH_SHORT).show();
-                                        EventBus.getDefault().postSticky(new CounterCartEvent(true));
-                                    }, throwable -> {
-                                        Toast.makeText(getContext(), "[CART ERROR]"+throwable.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }));
-                        } else
-                            Toast.makeText(getContext(), "[GET ERROR]"+e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-    }
-
-    private void displayAddonList() {
-        if (Common.selectedFood.getAddon().size() > 0){
-            chip_group_addon.clearCheck();
-            chip_group_addon.removeAllViews();
-
-            edit_search.addTextChangedListener(this);
-
-            //Add all view
-            for (AddonModel addonModel : Common.selectedFood.getAddon()){
-
-                    Chip chip = (Chip)getLayoutInflater().inflate(R.layout.layout_addon_item, null);
-                    chip.setText(new StringBuilder(addonModel.getName()).append("($")
-                            .append(addonModel.getPrice()).append(")"));
-                    chip.setOnCheckedChangeListener((buttonView, b) -> {
-                        if (b){
-                            if (Common.selectedFood.getUserSelectedAddon() == null)
-                                Common.selectedFood.setUserSelectedAddon(new ArrayList<>());
-                            Common.selectedFood.getUserSelectedAddon().add(addonModel);
-                        }
-
-                    });
-                    chip_group_addon.addView(chip);
-            }
-        }
-    }
-
 
     @OnClick(R.id.btn_rating)
     void OnRatingButtonClick(){
@@ -271,15 +140,18 @@ public class FoodDetailFragment extends Fragment implements TextWatcher {
 
     @OnClick(R.id.btnShowComment)
     void onShowCommentButtonOnclick(){
-        //CommentFragment commentFragment = CommentFragment.getInstance();
-        //commentFragment.show(getActivity().getSupportFragmentManager(), "CommentFragment");
+        CommentFragment commentFragment = CommentFragment.getInstance();
+        commentFragment.show(getActivity().getSupportFragmentManager(), "CommentFragment");
 
     }
 
     private void showDialogRating() {
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getContext());
-        builder.setTitle("Évaluation des plats");
-        //builder.setMessage("Veuillez ajouter note");
+        builder.setTitle("Évaluation");
 
         View itemView = LayoutInflater.from(getContext()).inflate(R.layout.layout_rating, null);
 
@@ -293,8 +165,9 @@ public class FoodDetailFragment extends Fragment implements TextWatcher {
         });
         builder.setPositiveButton("OK", (dialogInterface, i) -> {
             CommentModel commentModel = new CommentModel();
-            commentModel.setName(Common.currentUser.getName());
-            commentModel.setUid(Common.currentUser.getUid());
+            assert firebaseUser != null;
+            commentModel.setName(firebaseUser.getDisplayName());
+            commentModel.setUid(firebaseUser.getUid());
             commentModel.setComment(edit_comment.getText().toString());
             commentModel.setRatingValue(ratingBar.getRating());
             Map<String, Object> serverTimeStamp = new HashMap<>();
@@ -320,10 +193,12 @@ public class FoodDetailFragment extends Fragment implements TextWatcher {
         foodDetailViewModel.getMutableLiveDataFood().observe(this, foodModel -> {
             displayInfo(foodModel);
         });
-
         foodDetailViewModel.getModelMutableDataComment().observe(this, commentModel -> {
             submitRatingToFirebase(commentModel);
         });
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         
         return root;
     }
@@ -397,13 +272,14 @@ public class FoodDetailFragment extends Fragment implements TextWatcher {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()){
                             FoodModel foodModel = dataSnapshot.getValue(FoodModel.class);
+                            assert foodModel != null;
                             foodModel.setKey(Common.selectedFood.getKey());
 
                             //Apply rating
                             if (foodModel.getRatingValue() == null)
                                 foodModel.setRatingValue(0d);
                             if (foodModel.getRatingCount() == null)
-                                foodModel.setRatingCount(0l);
+                                foodModel.setRatingCount(0L);
                             double sumRating = foodModel.getRatingValue()+ratingValue;
                             long ratingCount = foodModel.getRatingCount()+1;
                             double result = sumRating/ratingCount;
@@ -448,6 +324,7 @@ public class FoodDetailFragment extends Fragment implements TextWatcher {
         food_description.setText(new StringBuilder(foodModel.getDescription()));
         food_price.setText(new StringBuilder(String.valueOf(foodModel.getPrice())));
 
+        //Afficher les etoiles
         if (foodModel.getRatingValue() != null)
             ratingBar.setRating(foodModel.getRatingValue().floatValue());
 

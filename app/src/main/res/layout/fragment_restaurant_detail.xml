@@ -32,7 +32,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -65,7 +64,7 @@
                         android:layout_marginTop="14dp"
                         android:padding="12dp"
                         android:text="@string/menu_restaurant"
-                        android:fontFamily="@font/roboto_thin"
+                        android:fontFamily="@font/brandon_medium"
                         android:textStyle="bold"
                         android:textColor="@color/colorPrimary"
                         android:textSize="20sp"
@@ -74,13 +73,13 @@
 
                     <ImageView
                         android:src="@drawable/ic_map"
+                        android:visibility="gone"
                         android:layout_alignParentEnd="true"
                         android:padding="12dp"
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true" />
-
 
                 </RelativeLayout>
 
@@ -98,7 +97,7 @@
                     android:orientation="vertical">
 
                     <RatingBar
-                        android:id="@+id/ratingBar"
+                        android:id="@+id/ratingBar_restaurant"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="?android:attr/ratingBarStyleIndicator"
@@ -113,14 +112,38 @@
                         android:layout_marginTop="12dp"
                         android:padding="12dp"
                         android:justificationMode="inter_word"
+                        android:text="@string/description_restaurant"
+                        android:fontFamily="@font/brandon_medium"
+                        android:textColor="#4A4A4A"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:padding="12dp"
+                        android:justificationMode="inter_word"
                         android:text="@string/restaurant_menu"
-                        android:fontFamily="@font/roboto_thin"
-                        android:textStyle="bold"
-                        android:textColor="#C3070707"
+                        android:fontFamily="@font/brandon_medium"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/menu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:padding="12dp"
+                        android:justificationMode="inter_word"
+                        android:text="@string/description_restaurant"
+                        android:fontFamily="@font/brandon_medium"
+                        android:textColor="#4A4A4A"
                         android:textSize="16sp"/>
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
                         android:id="@+id/recycler_menu_restaurant"
+                        android:padding="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
 
@@ -192,7 +215,7 @@
                             android:layout_marginLeft="4dp"
                             android:layout_marginTop="4dp"
                             android:src="@drawable/ic_add_box_black"
-                            android:tint="@color/colorAccent"/>
+                            app:tint="@color/colorAccent" />
 
                     </LinearLayout>
 
@@ -206,7 +229,7 @@
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:id="@+id/btnShowComment"
+                android:id="@+id/btn_wb_link"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -235,6 +258,7 @@
 
     <com.andremion.counterfab.CounterFab
         android:id="@+id/btn_call"
+        android:visibility="gone"
         android:src="@drawable/ic_phone"
         app:backgroundTint="@android:color/white"
         app:elevation="6dp"

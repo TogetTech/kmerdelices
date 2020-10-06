@@ -4,23 +4,45 @@ import java.util.List;
 
 public class RestaurantModel {
 
-    private String restaurant_id, name, image, description, ville;
-    private String menu_resto_id, menu_resto_name, menu_resto_prix, menu_resto_image;
+    private String key;
+    private String restaurant_id, name, image, description, ville, wb_link;
+    private String menu;
+    List<RestaurantModel> menus;
+    private Double ratingValue;
+    private Long ratingCount;
 
     public RestaurantModel () {
 
     }
 
-    public RestaurantModel(String restaurant_id, String name, String image, String description, String ville, String menu_resto_id, String menu_resto_name, String menu_resto_prix, String menu_resto_image) {
+    public RestaurantModel(String wb_link, String key, String restaurant_id, String name, String image, String description, String ville, String menu, Double ratingValue, Long ratingCount) {
+        this.key = key;
         this.restaurant_id = restaurant_id;
         this.name = name;
         this.image = image;
         this.description = description;
+        this.menu = menu;
         this.ville = ville;
-        this.menu_resto_id = menu_resto_id;
-        this.menu_resto_name = menu_resto_name;
-        this.menu_resto_prix = menu_resto_prix;
-        this.menu_resto_image = menu_resto_image;
+        this.ratingValue = ratingValue;
+        this.ratingCount = ratingCount;
+
+        this.wb_link = wb_link;
+    }
+
+    public String getWb_link() {
+        return wb_link;
+    }
+
+    public void setWb_link(String wb_link) {
+        this.wb_link = wb_link;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getRestaurant_id() {
@@ -55,6 +77,14 @@ public class RestaurantModel {
         this.description = description;
     }
 
+    public String getMenu() {
+        return menu;
+    }
+
+    public void setMenu(String menu) {
+        this.menu = menu;
+    }
+
     public String getVille() {
         return ville;
     }
@@ -63,35 +93,28 @@ public class RestaurantModel {
         this.ville = ville;
     }
 
-    public String getMenu_resto_id() {
-        return menu_resto_id;
+
+    public Double getRatingValue() {
+        return ratingValue;
     }
 
-    public void setMenu_resto_id(String menu_resto_id) {
-        this.menu_resto_id = menu_resto_id;
+    public void setRatingValue(Double ratingValue) {
+        this.ratingValue = ratingValue;
     }
 
-    public String getMenu_resto_name() {
-        return menu_resto_name;
+    public Long getRatingCount() {
+        return ratingCount;
     }
 
-    public void setMenu_resto_name(String menu_resto_name) {
-        this.menu_resto_name = menu_resto_name;
+    public void setRatingCount(Long ratingCount) {
+        this.ratingCount = ratingCount;
     }
 
-    public String getMenu_resto_prix() {
-        return menu_resto_prix;
+    public List<RestaurantModel> getMenus() {
+        return menus;
     }
 
-    public void setMenu_resto_prix(String menu_resto_prix) {
-        this.menu_resto_prix = menu_resto_prix;
-    }
-
-    public String getMenu_resto_image() {
-        return menu_resto_image;
-    }
-
-    public void setMenu_resto_image(String menu_resto_image) {
-        this.menu_resto_image = menu_resto_image;
+    public void setMenus(List<RestaurantModel> menus) {
+        this.menus = menus;
     }
 }

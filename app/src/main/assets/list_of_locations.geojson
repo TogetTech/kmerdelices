@@ -1,0 +1,27 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Socrat Restaurant",
+        "hours": "6h - 23h30",
+        "phone": "(+237) 690040404",
+        "description": "Nouvelle Route Bastos, Yaoundé"
+      },
+      "geometry": {"type": "Point", "coordinates": [11.508737, 3.884650]}
+    },
+
+  {
+      "type": "Feature",
+      "properties": {
+        "name": "Restaurant La SAVEUR",
+        "hours": "6h - 23h30",
+        "phone": "(+237) 690040404",
+        "description": "Entrée Lycée, Yaoundé"
+      },
+      "geometry": {"type": "Point", "coordinates": [11.502885, 3.883435]}
+    }
+  ]
+}
+

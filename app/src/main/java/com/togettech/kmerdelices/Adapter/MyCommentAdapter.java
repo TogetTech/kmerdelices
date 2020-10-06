@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.togettech.kmerdelices.Model.CommentModel;
 import com.togettech.kmerdelices.R;
 
@@ -38,6 +40,7 @@ public class MyCommentAdapter extends RecyclerView.Adapter<MyCommentAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
         Long timeStamp = Long.valueOf(commentModelList.get(position).getCommentTimeStamp().get("timeStamp").toString());
         holder.txt_comment_date.setText(DateUtils.getRelativeTimeSpanString(timeStamp));
         holder.txt_comment.setText(commentModelList.get(position).getComment());
@@ -62,8 +65,6 @@ public class MyCommentAdapter extends RecyclerView.Adapter<MyCommentAdapter.MyVi
         TextView txt_comment_date;
         @BindView(R.id.rating_bar)
         RatingBar rating_bar;
-
-
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -23,11 +23,16 @@ public class Common {
     public static final String CATEGORY_REF = "Category";
     public static final String COMMENT_REF = "Comments";
 
+
+
     public static UserModel currentUser;
     public static CategoryModel categorySelected;
     public static FoodModel selectedFood;
 
     public static final String RESTAURANT_REF = "Restaurant";
+    public static final String COMMENT_RESTAURANT_REF = "CommentsRestaurant";
+
+
     public static final String BOULANGERIE_REF = "Boulangerie";
 
     public static RestaurantModel restaurantSelected;

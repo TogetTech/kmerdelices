@@ -7,10 +7,11 @@ import com.togettech.kmerdelices.Common.Common;
 import com.togettech.kmerdelices.Model.CommentModel;
 import com.togettech.kmerdelices.Model.RestaurantModel;
 
-public class RestaurantDetailViewModel extends ViewModel {
+public class RestaurantDetailViewModel extends ViewModel{
 
     private MutableLiveData<RestaurantModel> mutableLiveDataRestaurantList;
     private MutableLiveData<CommentModel> modelMutableDataComment;
+
 
     public void setCommentModel(CommentModel commentModel){
         if (modelMutableDataComment != null)
@@ -22,6 +23,7 @@ public class RestaurantDetailViewModel extends ViewModel {
     }
     public RestaurantDetailViewModel (){
         modelMutableDataComment = new MutableLiveData<>();
+
     }
     public MutableLiveData<RestaurantModel> getMutableLiveDataRestaurant() {
         if (mutableLiveDataRestaurantList == null)
@@ -34,5 +36,6 @@ public class RestaurantDetailViewModel extends ViewModel {
         if (mutableLiveDataRestaurantList !=null)
                 mutableLiveDataRestaurantList.setValue(restaurantModel);
     }
+
 
 }

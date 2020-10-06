@@ -33,6 +33,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.togettech.kmerdelices.HomeActivity;
 
+import com.togettech.kmerdelices.LoginActivity;
 import com.togettech.kmerdelices.R;
 
 
@@ -48,24 +49,17 @@ public class CarouselActivity extends AppCompatActivity {
 
 
 
-    private static final String TAG = "CarouselActivity";
 
     Button btn_next_login;
+    FirebaseAuth mAuth;
 
-    private FirebaseAuth firebaseAuth;
-
-    private static final int RC_SIGN_IN_GO = 1001;
-    GoogleSignInClient googleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carousel);
 
-
-        // Initialize Firebase Auth
-        FirebaseApp.initializeApp(getApplicationContext());
-        firebaseAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         //SLIDER
         mySlideviewpage = findViewById(R.id.slideviewpage);
@@ -83,66 +77,12 @@ public class CarouselActivity extends AppCompatActivity {
         btn_next_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signInToGoogle();
+                Intent intent = new Intent(CarouselActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
-        //Configure Google Client
-        configureGoogleClient();
-
-        //Initialize Firebase Auth
-        FirebaseApp.initializeApp(getApplicationContext());
-        firebaseAuth = FirebaseAuth.getInstance();
 
     }
-
-    //GOOGLE LOGIN .................................................................................
-    private void configureGoogleClient() {
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.web_client_id))
-                .requestEmail()
-                .build();
-        googleSignInClient = GoogleSignIn.getClient(this, gso);
-        firebaseAuth = FirebaseAuth.getInstance();
-    }
-    private void signInToGoogle() {
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN_GO);
-    }
-
-    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
-        //Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
-        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
-        firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-                            //Log.d(TAG, "signInWithCredential:success: currentUser: " + user.getEmail());
-                            //showToastMessage("Firebase Authentication Succeeded ");
-                            launchMainActivity(user);
-                            updateUI();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            //Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            showToastMessage("Firebase Authentication failed:" + task.getException());
-                        }
-                    }
-                });
-    }
-
-    private void showToastMessage(String message) {
-        Toast.makeText(CarouselActivity.this, message, Toast.LENGTH_LONG).show();
-    }
-    private void launchMainActivity(FirebaseUser user) {
-        if (user != null) {
-            //MainActivity.startActivity(this, user.getDisplayName());
-            finish();
-        }
-    }
-
-    //END GOOGLE LOGON..............................................................................
 
 
     //SLIDER........................................................................................
@@ -189,25 +129,7 @@ public class CarouselActivity extends AppCompatActivity {
 
     //END SLIDER....................................................................................
 
-    //BACKGROUND RUN ...............................................................................
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SIGN_IN_GO) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                //showToastMessage("Google Sign in Succeeded");
-                firebaseAuthWithGoogle(account);
-                updateUI();
-            } catch (ApiException e) {
-                // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed", e);
-                showToastMessage("Google Sign in Failed " + e);
-            }
-        }
 
-    }
     private void updateUI() {
         //Toast.makeText(CarouselActivity.this, "Vous êtes connecté", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(CarouselActivity.this, HomeActivity.class);
@@ -218,9 +140,9 @@ public class CarouselActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-           updateUI();
+            updateUI();
         }
     }
 }

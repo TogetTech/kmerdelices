@@ -1,5 +1,6 @@
 package com.togettech.kmerdelices;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
@@ -111,6 +112,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_boulangerie:
                 navController.navigate(R.id.nav_boulangerie);
+                break;
+            case R.id.nav_explorer:
+                Intent intent = new Intent(HomeActivity.this, ExploreActivity.class);
+                startActivity(intent);
                 break;
             case R.id.nav_account:
                 navController.navigate(R.id.nav_account);

@@ -15,7 +15,7 @@
         tools:ignore="UselessParent">
 
         <ImageView
-            android:id="@+id/img_restaurant_menu"
+            android:id="@+id/menu_restaurant_image"
             android:scaleType="centerCrop"
             android:layout_width="150dp"
             android:layout_height="match_parent"
@@ -24,13 +24,13 @@
         <LinearLayout
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="5dp"
             android:weightSum="10"
             android:background="@color/border_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
-            android:layout_toRightOf="@id/img_restaurant_menu"
+            android:layout_toRightOf="@id/menu_restaurant_image"
             tools:ignore="RtlHardcoded">
 
             <LinearLayout
@@ -41,9 +41,10 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txt_restaurant_nemu"
-                    android:fontFamily="@font/roboto_thin"
+                    android:id="@+id/menu_restaurant_name"
+                    android:fontFamily="@font/brandon_medium"
                     android:textStyle="bold"
+                    android:padding="5dp"
                     android:text="Nom du menu"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
@@ -52,12 +53,13 @@
                     tools:ignore="HardcodedText" />
 
                 <TextView
-                    android:id="@+id/prix_restaurant_menu"
-                    android:fontFamily="@font/roboto_thin"
+                    android:id="@+id/menu_restaurant_prix"
+                    android:fontFamily="@font/brandon_medium"
                     android:textStyle="bold"
                     android:text="1000 Fcfa"
                     android:textColor="@android:color/white"
                     android:textSize="10sp"
+                    android:padding="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:ignore="HardcodedText,SmallSp" />

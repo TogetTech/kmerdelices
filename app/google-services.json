@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "305501299385",
-    "firebase_url": "https://k-merdelices.firebaseio.com",
-    "project_id": "k-merdelices",
-    "storage_bucket": "k-merdelices.appspot.com"
+    "project_number": "148950114521",
+    "firebase_url": "https://kmerdelices-6b691.firebaseio.com",
+    "project_id": "kmerdelices-6b691",
+    "storage_bucket": "kmerdelices-6b691.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:305501299385:android:4e26ef5880ea95fb06f168",
+        "mobilesdk_app_id": "1:148950114521:android:3c5a1699eec70995011ec8",
         "android_client_info": {
           "package_name": "com.togettech.kmerdelices"
         }
       },
       "oauth_client": [
         {
-          "client_id": "305501299385-hm844g0k8dvagkrostls80797o3tc4im.apps.googleusercontent.com",
+          "client_id": "148950114521-1v5unoft34mnntltge392n18tp07788u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.togettech.kmerdelices",
+            "certificate_hash": "84eeca77bf3f478f8c6761c7a61f63fa15d79f20"
+          }
+        },
+        {
+          "client_id": "148950114521-90ur901qclrb4qsfj2g87p0pl1ncf6ch.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD4FVYbtDi1SZ5K6Bqk-bG5a1Yp5jHuGRI"
+          "current_key": "AIzaSyA-h-Ad6sEAShLsUKSyrJhJa_KD5KClq1o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "305501299385-hm844g0k8dvagkrostls80797o3tc4im.apps.googleusercontent.com",
+              "client_id": "148950114521-90ur901qclrb4qsfj2g87p0pl1ncf6ch.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
